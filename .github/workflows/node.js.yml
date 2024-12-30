@@ -8,6 +8,8 @@ on:
     branches: [ "angular" ]
   pull_request:
     branches: [ "angular" ]
+  workflow_dispatch:
+    branches: [ "angular" ]
 
 jobs:
   build:
@@ -29,8 +31,12 @@ jobs:
         cache-dependency-path: package-lock.json
     - run: npm ci
       name: Install Dependencies
-    - run: npm run build
+    - run: npm run build --base-href=/KlausurTimer/
       name: Build SPA
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./dist
       
   deploy:
     name: Deploy to Github Pages
