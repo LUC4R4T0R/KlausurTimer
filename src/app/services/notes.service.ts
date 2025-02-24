@@ -46,7 +46,7 @@ export class NotesService {
   private loadNotes(): void{
     const val: string | null = localStorage.getItem('notes');
     if(val === null) this.notes = {};
-    else this.notes = JSON.parse(localStorage.getItem('notes') as string);
+    else this.notes = JSON.parse(val as string);
     //this.notesSubject.next(this.notes);
   }
 

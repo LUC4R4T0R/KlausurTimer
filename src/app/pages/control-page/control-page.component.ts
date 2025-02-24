@@ -8,10 +8,14 @@ import { TimerControlsComponent } from '../../components/timer-controls/timer-co
 import { ViewService } from '../../services/view.service';
 import { WindowType } from '../../models/window-type';
 import { DurationDisplayComponent } from '../../components/duration-display/duration-display.component';
-import { SettingsModalComponent } from '../../components/settings-modal/settings-modal.component';
 import { BonusModalComponent } from '../../components/bonus-modal/bonus-modal.component';
 import { NotesDisplayComponent } from '../../components/notes-display/notes-display.component';
 import { NoteModalComponent } from '../../components/note-modal/note-modal.component';
+import { NgIf } from '@angular/common';
+import { ExamConfig } from '../../models/exam-config';
+import { SettingsService } from '../../services/settings.service';
+import { EntranceDialogueComponent } from '../../components/entrance-dialogue/entrance-dialogue.component';
+import { ToiletDialogueComponent } from '../../components/toilet-dialogue/toilet-dialogue.component';
 
 @Component({
   selector: 'app-control-page',
@@ -24,20 +28,27 @@ import { NoteModalComponent } from '../../components/note-modal/note-modal.compo
     EventLogComponent,
     TimerControlsComponent,
     DurationDisplayComponent,
-    SettingsModalComponent,
     BonusModalComponent,
     NotesDisplayComponent,
-    NoteModalComponent
+    NoteModalComponent,
+    NgIf,
+    EntranceDialogueComponent,
+    ToiletDialogueComponent,
   ],
   templateUrl: './control-page.component.html',
   styleUrl: './control-page.component.scss'
 })
 export class ControlPageComponent implements OnInit{
-  constructor(private viewService: ViewService) {
+  examConfig!: ExamConfig;
+
+  constructor(private viewService: ViewService, private settingsService: SettingsService) {
   }
 
   ngOnInit(): void {
     this.viewService.hideSettingsModal();
     this.viewService.setWindowType(WindowType.REMOTE_CONTROL);
+    this.settingsService.getExamConfig().subscribe((examConfig: ExamConfig) => {
+      this.examConfig = examConfig;
+    });
   }
 }

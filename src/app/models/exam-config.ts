@@ -4,4 +4,5 @@ export interface ExamConfig{
   room: string;
   resources: string;
   duration: number;
+  extended_logging: boolean;
 }

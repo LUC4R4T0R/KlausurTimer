@@ -1,0 +1,28 @@
+<div class="form">
+  <div class="input-group">
+    <label for="participant-editor-firstname-input" i18n>Vorname</label>
+    <input id="participant-editor-firstname-input" type="text" [(ngModel)]="tempParticipant.firstName" >
+  </div>
+  <div class="input-group">
+    <label for="participant-editor-lastname-input" i18n>Nachname</label>
+    <input id="participant-editor-lastname-input" type="text" [(ngModel)]="tempParticipant.lastName">
+  </div>
+  <div class="input-group">
+    <label for="participant-editor-seat-number-input" i18n>Platznummer</label>
+    <input id="participant-editor-seat-number-input" type="text" placeholder="(automatisch vergeben)" i18n-placeholder [(ngModel)]="tempParticipant.seatNumber" >
+  </div>
+  <div class="input-group checkbox-input">
+    <label for="participant-editor-state-input" i18n>Status</label>
+    <select id="participant-editor-state-input" type="text" [(ngModel)]="tempParticipant.state" >
+      <option [value]="ParticipationState.REGISTERED" i18n>angemeldet</option>
+      <option [value]="ParticipationState.PRESENT" i18n>anwesend</option>
+      <option [value]="ParticipationState.FINISHED" i18n>abgegeben</option>
+      <option [value]="ParticipationState.ABSENT" i18n>abwesend</option>
+      <option [value]="ParticipationState.ABORTED" i18n>abgebrochen</option>
+    </select>
+  </div>
+  <div class="controls">
+    <button (click)="onAbort()" i18n >abbrechen</button>
+    <button (click)="saveChanges()" i18n >speichern</button>
+  </div>
+</div>

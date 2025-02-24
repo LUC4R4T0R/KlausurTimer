@@ -18,7 +18,27 @@
       <button (click)="bonusModal.open()"><i class="bi bi-plus"></i> Bonus</button>
     </div>
   </div>
-  <div class="tile" style="grid-row: 1 / 2">
+  <div class="tile" style="grid-row: span 1;" *ngIf="examConfig.extended_logging">
+    <h4 i18n>Protokollvorgänge</h4>
+    <div id="logging-dialogues" class="scroll">
+      <button i18n (click)="entranceDialogueComponent.start()">
+        Einlass
+      </button>
+      <button i18n (click)="toiletDialogueComponent.start()">
+        WC
+      </button>
+      <button i18n>
+        Abgabe
+      </button>
+      <button i18n>
+        Bemerkung
+      </button>
+      <button i18n>
+        Protokollexport
+      </button>
+    </div>
+  </div>
+  <div class="tile" style="grid-row: span 1">
     <h4 i18n>Toilettenkoordination</h4>
     <app-toilet-controls class="scroll"></app-toilet-controls>
   </div>
@@ -26,7 +46,7 @@
     <h4 i18n>Ereignis-Log</h4>
     <app-event-log class="scroll"></app-event-log>
   </div>
-  <div class="tile" style="grid-row: 2 / 5">
+  <div class="tile" style="grid-row-end: 5" [style.grid-row-start]="examConfig.extended_logging ? 3 : 2">
     <h4 i18n>Hinweise</h4>
     <app-note-display class="scroll" [editable]="true" [collapsed]="true" (editNote)="noteModal.open($event.id, $event.note)"></app-note-display>
     <div class="add-note"><button (click)="noteModal.open()"><i class="bi bi-plus"></i> hinzufügen</button></div>
@@ -34,3 +54,5 @@
 </div>
 <app-bonus-modal #bonusModal></app-bonus-modal>
 <app-note-modal #noteModal></app-note-modal>
+<app-entrance-dialogue #entranceDialogueComponent></app-entrance-dialogue>
+<app-toilet-dialogue #toiletDialogueComponent></app-toilet-dialogue>

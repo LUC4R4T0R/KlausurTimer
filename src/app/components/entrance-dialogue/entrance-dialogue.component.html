@@ -1,0 +1,10 @@
+<app-modal [title]="'Einlass'" i18n-title (onClose)="onClose()" [initiallyOpen]="false">
+@if (savedParticipant) {
+  <app-participant-info [participant]="savedParticipant"></app-participant-info>
+  <div class="controls">
+    <button (click)="nextParticipant()" i18n >fortfahren</button>
+  </div>
+} @else {
+  <app-participant-editor (saved)="onSaved($event)" (abort)="onAbort()"></app-participant-editor>
+}
+</app-modal>

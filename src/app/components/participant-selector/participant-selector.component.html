@@ -1,0 +1,13 @@
+<div class="form">
+  <div class="input-group">
+    <input type="text" placeholder="Name / Platz Nr." [(ngModel)]="searchTerm">
+  </div>
+  <div class="input-group">
+    <select size="10">
+      <option *ngFor="let participant of filteredParticipants">{{participant.seatNumber ? participant.seatNumber + ':' : ''}} {{participant.lastName}}, {{participant.firstName}}</option>
+    </select>
+  </div>
+  <div class="controls">
+    <button>auswählen</button>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="wrapper">
+  <span class="firstname">{{participant.firstName}}</span>
+  <span class="lastname">{{participant.lastName}}</span>
+  <span class="seat-number" *ngIf="participant.seatNumber" i18n>Platz {{participant.seatNumber}}</span>
+  <span class="state">- {{getState()}} -</span>
+</div>

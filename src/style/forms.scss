@@ -15,7 +15,7 @@
   min-height: 8rem;
 }
 
-.input-group > input:not([type=checkbox]):not([type=radio]), .input-group > textarea{
+.input-group > input:not([type=checkbox]):not([type=radio]), .input-group > textarea, .input-group > select{
   margin-top: 0.25rem;
   width: 100%;
   font-size: large;

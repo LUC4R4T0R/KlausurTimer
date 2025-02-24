@@ -6,7 +6,8 @@ export const examConfig: ExamConfig = {
   subTitle: '',
   room: '',
   resources: $localize`keine`,
-  duration: 7200000 // 2h in milliseconds
+  duration: 7200000, // 2h in milliseconds
+  extended_logging: false
 };
 
 export const displayConfig: DisplayConfig = {

@@ -25,5 +25,11 @@ body{
   overflow-y: auto;
 }
 
+.superscript{
+  display: inline-block;
+  font-size: 0.7rem;
+  vertical-align: super;
+}
+
 @import "style/forms";
 @import "style/modals";
