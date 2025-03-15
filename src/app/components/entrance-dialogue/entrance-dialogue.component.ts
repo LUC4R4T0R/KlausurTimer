@@ -4,6 +4,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { Participant } from '../../models/participant';
 import { ParticipantInfoComponent } from '../participant-info/participant-info.component';
 import { ParticipationState } from '../../models/participation-state';
+import { RfidService } from '../../services/rfid.service';
 
 @Component({
   selector: 'app-entrance-dialogue',
@@ -20,8 +21,13 @@ export class EntranceDialogueComponent {
   @ViewChild(ModalComponent) modal!: ModalComponent;
   savedParticipant?: Participant;
 
+  constructor(private rfidService: RfidService) {
+  }
+
   public start(): void {
     this.modal.open();
+    this.rfidService.readUid()
+      .then(uid => console.log(uid));
   }
 
   onClose(): void {
