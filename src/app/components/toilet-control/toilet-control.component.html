@@ -1,4 +1,4 @@
-<span>WC {{index+1}}</span>
+<span>WC {{index+1}}{{toilet.occupant ? ': ' + toilet.occupant.lastName : ''}}</span>
 <div class="radio-button-group">
   <input type="radio" [id]="'toilet-input-'+index+'-vacant'" [name]="'toilet-input-'+index" [(ngModel)]="toilet.state" [value]="ToiletState.VACANT" (ngModelChange)="onChange()">
   <label i18n [for]="'toilet-input-'+index+'-vacant'" >frei</label>

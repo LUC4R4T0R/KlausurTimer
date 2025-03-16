@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Participant } from '../../models/participant';
 import { ParticipantManagementService } from '../../services/participant-management.service';
 import { filter } from 'rxjs';
@@ -18,6 +18,8 @@ import { FormsModule } from '@angular/forms';
 export class ParticipantSelectorComponent implements OnInit {
   participants: Participant[] = [];
   searchTerm: string = '';
+  currentSelection?: Participant;
+  @Output() participantSelected: EventEmitter<Participant> = new EventEmitter<Participant>();
 
   constructor(private participantManagementService: ParticipantManagementService) {
   }
@@ -47,5 +49,9 @@ export class ParticipantSelectorComponent implements OnInit {
 
   private getFullName(participant: Participant): string {
     return participant.lastName + ', ' + participant.firstName;
+  }
+
+  handleSelection(): void {
+    this.participantSelected.emit(this.currentSelection);
   }
 }

@@ -12,10 +12,11 @@ import { BonusModalComponent } from '../../components/bonus-modal/bonus-modal.co
 import { NotesDisplayComponent } from '../../components/notes-display/notes-display.component';
 import { NoteModalComponent } from '../../components/note-modal/note-modal.component';
 import { NgIf } from '@angular/common';
-import { ExamConfig } from '../../models/exam-config';
 import { SettingsService } from '../../services/settings.service';
 import { EntranceDialogueComponent } from '../../components/entrance-dialogue/entrance-dialogue.component';
 import { ToiletDialogueComponent } from '../../components/toilet-dialogue/toilet-dialogue.component';
+import { SoftwareConfig } from '../../models/software-config';
+import { SoftwareSettingsComponent } from '../../components/software-settings/software-settings.component';
 
 @Component({
   selector: 'app-control-page',
@@ -34,12 +35,13 @@ import { ToiletDialogueComponent } from '../../components/toilet-dialogue/toilet
     NgIf,
     EntranceDialogueComponent,
     ToiletDialogueComponent,
+    SoftwareSettingsComponent,
   ],
   templateUrl: './control-page.component.html',
   styleUrl: './control-page.component.scss'
 })
 export class ControlPageComponent implements OnInit{
-  examConfig!: ExamConfig;
+  softwareConfig!: SoftwareConfig;
 
   constructor(private viewService: ViewService, private settingsService: SettingsService) {
   }
@@ -47,8 +49,8 @@ export class ControlPageComponent implements OnInit{
   ngOnInit(): void {
     this.viewService.hideSettingsModal();
     this.viewService.setWindowType(WindowType.REMOTE_CONTROL);
-    this.settingsService.getExamConfig().subscribe((examConfig: ExamConfig) => {
-      this.examConfig = examConfig;
+    this.settingsService.getSoftwareConfig().subscribe((softwareConfig: SoftwareConfig) => {
+      this.softwareConfig = softwareConfig;
     });
   }
 }

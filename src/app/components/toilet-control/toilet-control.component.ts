@@ -1,4 +1,4 @@
-import { Component, HostBinding, HostListener, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Toilet } from '../../models/toilet';
 import { ToiletService } from '../../services/toilet.service';
 import { ToiletState } from '../../models/toilet-state';
