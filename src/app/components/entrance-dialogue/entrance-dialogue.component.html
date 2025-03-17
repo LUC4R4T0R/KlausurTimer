@@ -1,4 +1,5 @@
 <app-modal [title]="'Einlass'" i18n-title (onClose)="onClose()" [initiallyOpen]="false">
+  <app-rfid-reader (participant)="handleParticipantCardScanned($event)" [style.display]="savedParticipant ? 'none': 'block'"></app-rfid-reader>
 @if (savedParticipant) {
   <app-participant-info [participant]="savedParticipant"></app-participant-info>
   <div class="controls">

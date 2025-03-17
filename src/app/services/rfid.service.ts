@@ -42,7 +42,11 @@ export class RfidService {
 
   async ensureReaderAvailable(): Promise<void> {
     if(!this.reader) this.initReader();
-    if(!(await this.testReaderConnection())) throw new Error();
+    await this.testReaderConnection()
+      .catch(error => {
+        console.error(error);
+        console.log(Object.entries(error));
+      })
   }
 
   async readUid(): Promise<number[]> {

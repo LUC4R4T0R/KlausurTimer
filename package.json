@@ -9,7 +9,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "xi18n": "ng extract-i18n --format=json --output-path=src/locale"
+    "xi18n": "ng extract-i18n --format=json --output-path=src/locale",
+    "mkcert": "mkcert -key-file ./ssl/local-key.pem -cert-file ./ssl/local-cert.pem -ecdsa localhost 127.0.0.1"
   },
   "private": true,
   "dependencies": {

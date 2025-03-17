@@ -1,3 +1,5 @@
 <app-modal [title]="'Toilettengang'" i18n-title (onClose)="onClose()" [initiallyOpen]="false">
+  <span *ngIf="errorMessage" id="error">{{errorMessage}}</span>
+  <app-rfid-reader (participant)="handleParticipantScanned($event)"></app-rfid-reader>
   <app-participant-selector (participantSelected)="onSelected($event)"></app-participant-selector>
 </app-modal>

@@ -1,0 +1,22 @@
+$color-passive: lightgray;
+$color-active: DeepSkyBlue;
+
+:host #wrapper{
+  padding: 1rem;
+  border: 1px solid $color-passive;
+  color: $color-passive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+:host.reading #wrapper{
+  border-color: $color-active;
+  color: $color-active;
+  cursor: unset;
+}
+
+i.bi{
+  font-size: 4rem;
+}
