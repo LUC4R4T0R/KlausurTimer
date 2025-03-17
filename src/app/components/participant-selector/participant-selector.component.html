@@ -3,11 +3,11 @@
     <input type="text" placeholder="Name / Platz Nr." [(ngModel)]="searchTerm">
   </div>
   <div class="input-group">
-    <select size="10">
-      <option *ngFor="let participant of filteredParticipants">{{participant.seatNumber ? participant.seatNumber + ':' : ''}} {{participant.lastName}}, {{participant.firstName}}</option>
+    <select size="10" [(ngModel)]="currentSelection">
+      <option [ngValue]="participant" *ngFor="let participant of filteredParticipants">{{participant.seatNumber ? participant.seatNumber + ':' : ''}} {{participant.lastName}}, {{participant.firstName}}</option>
     </select>
   </div>
   <div class="controls">
-    <button>auswählen</button>
+    <button (click)="handleSelection()">auswählen</button>
   </div>
 </div>

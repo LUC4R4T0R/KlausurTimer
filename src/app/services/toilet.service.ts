@@ -2,16 +2,18 @@ import { Injectable } from '@angular/core';
 import { Toilet } from '../models/toilet';
 import { ToiletState } from '../models/toilet-state';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { EventService } from './event.service';
 import { SettingsService } from './settings.service';
 import { DisplayConfig } from '../models/display-config';
+import { Participant } from '../models/participant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToiletService {
   t: Toilet[] = [
-    {state: ToiletState.VACANT}
+    {
+      state: ToiletState.VACANT
+    }
   ];
   toilets: Subject<Toilet[]> = new BehaviorSubject<Toilet[]>(this.t);
 
@@ -41,6 +43,7 @@ export class ToiletService {
   }
 
   public setToiletState(index: number, state: ToiletState): void{
+    if(state !== ToiletState.OCCUPIED) this.t[index].occupant = undefined;
     this.t[index].state = state;
     this.pushToiletChanges();
   }
@@ -63,5 +66,13 @@ export class ToiletService {
 
   private handleStorageEvent(event: StorageEvent): void{
     if(event.key === 'toilets') this.loadToilets();
+  }
+
+  public sendToToilet(participant: Participant): void{
+    const toilet: Toilet | undefined = this.t.find(toilet => toilet.state === ToiletState.VACANT);
+    if(!toilet) throw new Error('No toilet available.');
+    toilet.state = ToiletState.OCCUPIED;
+    toilet.occupant = participant;
+    this.pushToiletChanges();
   }
 }

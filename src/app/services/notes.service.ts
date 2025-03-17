@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Note } from '../models/note';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { v4 as uuid } from 'uuid';
 
 @Injectable({
@@ -8,7 +7,6 @@ import { v4 as uuid } from 'uuid';
 })
 export class NotesService {
   private notes: {[key: string]: Note} = {};
-  //private notesSubject: Subject<{[key: string]: Note}> = new BehaviorSubject<{[key: string]: Note}>({});
 
   constructor() {
     addEventListener('storage', (event: StorageEvent) => this.handleStorageEvent(event));
@@ -20,7 +18,6 @@ export class NotesService {
   }
 
   private pushNoteChanges(): void{
-    //this.notesSubject.next(this.notes);
     this.storeNotes();
   }
 

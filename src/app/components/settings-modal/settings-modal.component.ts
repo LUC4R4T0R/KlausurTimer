@@ -3,6 +3,7 @@ import { ExamSettingsComponent } from '../exam-settings/exam-settings.component'
 import { ModalComponent } from '../modal/modal.component';
 import { DisplaySettingsComponent } from '../display-settings/display-settings.component';
 import { ViewService } from '../../services/view.service';
+import { SoftwareSettingsComponent } from '../software-settings/software-settings.component';
 
 @Component({
   selector: 'app-settings-modal',
@@ -11,6 +12,7 @@ import { ViewService } from '../../services/view.service';
     ExamSettingsComponent,
     ModalComponent,
     DisplaySettingsComponent,
+    SoftwareSettingsComponent,
   ],
   templateUrl: './settings-modal.component.html',
   styleUrl: './settings-modal.component.scss'
@@ -19,6 +21,7 @@ export class SettingsModalComponent implements OnInit{
   @ViewChild(ModalComponent) modal!: ModalComponent;
   @ViewChild(ExamSettingsComponent) examSettings!: ExamSettingsComponent;
   @ViewChild(DisplaySettingsComponent) displaySettings!: DisplaySettingsComponent;
+  @ViewChild(SoftwareSettingsComponent) softwareSettings!: SoftwareSettingsComponent;
 
   modalTitle: string = $localize`Einstellungen`;
 
@@ -51,6 +54,7 @@ export class SettingsModalComponent implements OnInit{
   saveChanges(): void{
     this.examSettings.saveChanges();
     this.displaySettings.saveChanges();
+    this.softwareSettings.saveChanges();
     this.modal.close();
   }
 }

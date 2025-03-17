@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ExamEvent } from '../models/exam-event';
-import { ExamConfig } from '../models/exam-config';
-import { DisplayConfig } from '../models/display-config';
-import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
