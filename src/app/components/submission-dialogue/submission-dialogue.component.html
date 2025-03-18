@@ -1,0 +1,3 @@
+<app-modal [title]="'Abgabe'" i18n-title (onClose)="onClose()" [initiallyOpen]="false">
+  <app-participant-selector (participantSelected)="onSelected($event)"></app-participant-selector>
+</app-modal>

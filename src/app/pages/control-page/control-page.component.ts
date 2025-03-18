@@ -17,6 +17,7 @@ import { EntranceDialogueComponent } from '../../components/entrance-dialogue/en
 import { ToiletDialogueComponent } from '../../components/toilet-dialogue/toilet-dialogue.component';
 import { SoftwareConfig } from '../../models/software-config';
 import { SoftwareSettingsComponent } from '../../components/software-settings/software-settings.component';
+import { SubmissionDialogueComponent } from '../../components/submission-dialogue/submission-dialogue.component';
 
 @Component({
   selector: 'app-control-page',
@@ -36,6 +37,7 @@ import { SoftwareSettingsComponent } from '../../components/software-settings/so
     EntranceDialogueComponent,
     ToiletDialogueComponent,
     SoftwareSettingsComponent,
+    SubmissionDialogueComponent,
   ],
   templateUrl: './control-page.component.html',
   styleUrl: './control-page.component.scss'
