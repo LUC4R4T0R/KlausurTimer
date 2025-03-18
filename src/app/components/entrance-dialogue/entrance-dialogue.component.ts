@@ -3,7 +3,9 @@ import { ParticipantEditorComponent } from '../participant-editor/participant-ed
 import { ModalComponent } from '../modal/modal.component';
 import { Participant } from '../../models/participant';
 import { ParticipantInfoComponent } from '../participant-info/participant-info.component';
-import { ParticipationState } from '../../models/participation-state';
+import { ParticipantEventService } from '../../services/participant-event.service';
+import { ParticipantEvent } from '../../models/participant-event';
+import { ParticipantEventType } from '../../models/participant-event-type';
 
 @Component({
   selector: 'app-entrance-dialogue',
@@ -20,6 +22,9 @@ export class EntranceDialogueComponent {
   @ViewChild(ModalComponent) modal!: ModalComponent;
   savedParticipant?: Participant;
 
+  constructor(private participantEventService: ParticipantEventService) {
+  }
+
   public start(): void {
     this.modal.open();
   }
@@ -33,6 +38,7 @@ export class EntranceDialogueComponent {
   }
 
   onSaved(participant: Participant): void {
+    this.participantEventService.log(new ParticipantEvent(participant.id as string, ParticipantEventType.EXAM_ENTRY, new Date()));
     this.savedParticipant = participant;
   }
 

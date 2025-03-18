@@ -5,6 +5,9 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { SettingsService } from './settings.service';
 import { DisplayConfig } from '../models/display-config';
 import { Participant } from '../models/participant';
+import { ParticipantEventService } from './participant-event.service';
+import { ParticipantEvent } from '../models/participant-event';
+import { ParticipantEventType } from '../models/participant-event-type';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +20,7 @@ export class ToiletService {
   ];
   toilets: Subject<Toilet[]> = new BehaviorSubject<Toilet[]>(this.t);
 
-  constructor(private settingsService: SettingsService) {
+  constructor(private settingsService: SettingsService, private participantEventService: ParticipantEventService) {
     this.settingsService.getDisplayConfig().subscribe((displayConfig: DisplayConfig) => {
       if(displayConfig.toiletCount !== this.t.length){
         this.setToiletCount(displayConfig.toiletCount);
@@ -43,7 +46,10 @@ export class ToiletService {
   }
 
   public setToiletState(index: number, state: ToiletState): void{
-    if(state !== ToiletState.OCCUPIED) this.t[index].occupant = undefined;
+    if(state !== ToiletState.OCCUPIED){
+      if(this.t[index].occupant) this.participantEventService.log(new ParticipantEvent(this.t[index].occupant.id as string, ParticipantEventType.TOILET_VISIT_END, new Date()));
+      this.t[index].occupant = undefined;
+    }
     this.t[index].state = state;
     this.pushToiletChanges();
   }
@@ -74,5 +80,6 @@ export class ToiletService {
     toilet.state = ToiletState.OCCUPIED;
     toilet.occupant = participant;
     this.pushToiletChanges();
+    this.participantEventService.log(new ParticipantEvent(participant.id as string, ParticipantEventType.TOILET_VISIT_START, new Date()));
   }
 }
