@@ -1,3 +1,15 @@
 <app-modal [title]="'Abgabe'" i18n-title (onClose)="onClose()" [initiallyOpen]="false">
-  <app-participant-selector (participantSelected)="onSelected($event)"></app-participant-selector>
+  <div class="form">
+    <div class="input-group">
+      <label i18n>Abgabegrund</label>
+      <select [(ngModel)]="reason">
+        <option [ngValue]="ParticipantEventType.EXAM_SUBMISSION" i18n>Klausur fertiggestellt</option>
+        <option [ngValue]="ParticipantEventType.EXAM_ABORT" i18n>Klausur abgebrochen</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label i18n>Teilnehmer:in</label>
+      <app-participant-selector (participantSelected)="onSelected($event)"></app-participant-selector>
+    </div>
+  </div>
 </app-modal>
