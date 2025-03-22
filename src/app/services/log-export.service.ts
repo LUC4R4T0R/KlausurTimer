@@ -151,8 +151,8 @@ export class LogExportService {
       body: [
         [{content: $localize`Modulprüfung`, styles: {cellWidth: 30}}, {content: this.examConfig.title, colSpan: 3}],
         [$localize`Datum`, new Date().toLocaleDateString(), {content: $localize`Raum`, styles: {cellWidth: 35}}, this.examConfig.room],
-        [$localize`Erstprüfer:in`, '', {content: $localize`Aufsichtsperson(en)`, colSpan: 2}, {content: '', rowSpan: 2}],
-        [$localize`Zweitprüfer:in`, '']
+        [$localize`Erstprüfer:in`, this.examConfig.primaryExaminer ?? '', {content: $localize`Aufsichtsperson(en)`, rowSpan: 2}, {content: (this.examConfig.attendants ?? []).join('\n'), rowSpan: 2}],
+        [$localize`Zweitprüfer:in`, this.examConfig.secondaryExaminer ?? '']
       ],
       pageBreak: 'auto',
       margin: {
