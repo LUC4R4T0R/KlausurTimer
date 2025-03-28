@@ -32,6 +32,10 @@ export class ParticipantManagementService {
     return this.participants;
   }
 
+  public getParticipantsSorted(): Participant[] {
+    return this.participants.sort(ParticipantManagementService.sortParticipants);
+  }
+
   public getParticipant(id: string): Participant | undefined {
     return this.participants.find((participant: Participant) => participant.id === id);
   }
@@ -59,5 +63,10 @@ export class ParticipantManagementService {
 
   private handleStorageEvent(event: StorageEvent): void{
     if(event.key === 'participants') this.loadParticipants();
+  }
+
+  public static sortParticipants(participantA: Participant, participantB: Participant): number {
+    return participantA.lastName.localeCompare(participantB.lastName, 'de')
+      || participantA.firstName.localeCompare(participantB.firstName, 'de');
   }
 }

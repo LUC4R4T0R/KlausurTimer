@@ -4,4 +4,7 @@ export interface ExamConfig{
   room: string;
   resources: string;
   duration: number;
+  primaryExaminer: string;
+  secondaryExaminer: string;
+  attendants: string[];
 }

@@ -17,6 +17,8 @@ import { EntranceDialogueComponent } from '../../components/entrance-dialogue/en
 import { ToiletDialogueComponent } from '../../components/toilet-dialogue/toilet-dialogue.component';
 import { SoftwareConfig } from '../../models/software-config';
 import { SoftwareSettingsComponent } from '../../components/software-settings/software-settings.component';
+import { SubmissionDialogueComponent } from '../../components/submission-dialogue/submission-dialogue.component';
+import { LogExportService } from '../../services/log-export.service';
 
 @Component({
   selector: 'app-control-page',
@@ -36,6 +38,7 @@ import { SoftwareSettingsComponent } from '../../components/software-settings/so
     EntranceDialogueComponent,
     ToiletDialogueComponent,
     SoftwareSettingsComponent,
+    SubmissionDialogueComponent,
   ],
   templateUrl: './control-page.component.html',
   styleUrl: './control-page.component.scss'
@@ -43,7 +46,11 @@ import { SoftwareSettingsComponent } from '../../components/software-settings/so
 export class ControlPageComponent implements OnInit{
   softwareConfig!: SoftwareConfig;
 
-  constructor(private viewService: ViewService, private settingsService: SettingsService) {
+  constructor(
+    private viewService: ViewService,
+    private settingsService: SettingsService,
+    private logExportService: LogExportService
+  ) {
   }
 
   ngOnInit(): void {
@@ -52,5 +59,9 @@ export class ControlPageComponent implements OnInit{
     this.settingsService.getSoftwareConfig().subscribe((softwareConfig: SoftwareConfig) => {
       this.softwareConfig = softwareConfig;
     });
+  }
+
+  exportLog(): void{
+    this.logExportService.printLog();
   }
 }

@@ -7,6 +7,9 @@ import { ParticipationState } from '../../models/participation-state';
 import { RfidService } from '../../services/rfid.service';
 import { RfidReaderComponent } from '../rfid-reader/rfid-reader.component';
 import { ParticipantManagementService } from '../../services/participant-management.service';
+import { ParticipantEventService } from '../../services/participant-event.service';
+import { ParticipantEvent } from '../../models/participant-event';
+import { ParticipantEventType } from '../../models/participant-event-type';
 
 @Component({
   selector: 'app-entrance-dialogue',
@@ -25,7 +28,7 @@ export class EntranceDialogueComponent {
   @ViewChild(RfidReaderComponent) rfidReader!: RfidReaderComponent;
   savedParticipant?: Participant;
 
-  constructor(private participantManagementService: ParticipantManagementService) {
+  constructor(private participantEventService: ParticipantEventService, private participantManagementService: ParticipantManagementService) {
   }
 
   public start(): void {
@@ -42,6 +45,7 @@ export class EntranceDialogueComponent {
   }
 
   onSaved(participant: Participant): void {
+    this.participantEventService.log(new ParticipantEvent(participant.id as string, ParticipantEventType.EXAM_ENTRY, new Date()));
     this.savedParticipant = participant;
   }
 

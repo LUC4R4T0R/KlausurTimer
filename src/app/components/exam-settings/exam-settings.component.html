@@ -5,7 +5,19 @@
   </div>
   <div class="input-group">
     <label for="exam-subtitle-input" i18n>Untertitel</label>
-    <input type="text" placeholder="Professor:in" i18n-placeholder id="exam-subtitle-input" [(ngModel)]="tempExamConfig.subTitle">
+    <input type="text" id="exam-subtitle-input" [(ngModel)]="tempExamConfig.subTitle">
+  </div>
+  <div class="input-group">
+    <label for="exam-primary-examiner-input" i18n>Erstprüfer:in</label>
+    <input type="text" id="exam-primary-examiner-input" [(ngModel)]="tempExamConfig.primaryExaminer">
+  </div>
+  <div class="input-group">
+    <label for="exam-secondary-examiner-input" i18n>Zweitprüfer:in</label>
+    <input type="text" id="exam-secondary-examiner-input" [(ngModel)]="tempExamConfig.secondaryExaminer">
+  </div>
+  <div class="input-group">
+    <label for="exam-attendant-input" i18n>Aufsichtsperson(en)</label>
+    <app-multi-line-input id="exam-attendant-input" [(lines)]="tempExamConfig.attendants"></app-multi-line-input>
   </div>
   <div class="input-group">
     <label for="exam-subtitle-input" i18n>Raum</label>

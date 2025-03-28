@@ -5,12 +5,14 @@ import { TimerService } from '../../services/timer.service';
 import { ExamState } from '../../models/exam-state';
 import { cloneObject } from '../../lib/util';
 import { SettingsService } from '../../services/settings.service';
+import { MultiLineInputComponent } from '../multi-line-input/multi-line-input.component';
 
 @Component({
   selector: 'app-exam-settings',
   standalone: true,
   imports: [
     FormsModule,
+    MultiLineInputComponent,
   ],
   templateUrl: './exam-settings.component.html',
   styleUrl: './exam-settings.component.scss'

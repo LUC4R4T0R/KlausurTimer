@@ -12,3 +12,7 @@ export function millisecondsToHms(milliseconds: number, hideHours: boolean = fal
 
   return (h === 0 && hideHours ? '' : hDisplay + ':') + mDisplay + ':' + sDisplay;
 }
+
+export function padZeros(str: string, minLength: number): string {
+  return '0'.repeat(minLength - str.length) + str;
+}
