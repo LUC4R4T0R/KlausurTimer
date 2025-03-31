@@ -54,4 +54,8 @@ export class ParticipantSelectorComponent implements OnInit {
   handleSelection(): void {
     this.participantSelected.emit(this.currentSelection);
   }
+
+  public reset(): void {
+    this.currentSelection = undefined;
+  }
 }

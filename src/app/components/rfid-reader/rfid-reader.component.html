@@ -1,9 +1,11 @@
-<div id="wrapper">
-  @if (reading){
-    <i class="bi bi-broadcast"></i>
-    <span>warte auf Ausweis</span>
-  } @else {
-    <i class="bi bi-dot"></i>
-    <span>klicke zum aktivieren</span>
-  }
-</div>
+@if (enabled) {
+  <div id="wrapper" [class.active]="reading">
+    @if (reading){
+      <i class="bi bi-broadcast"></i>
+      <span>warte auf Ausweis</span>
+    } @else {
+      <i class="bi bi-dot"></i>
+      <span>klicke zum aktivieren</span>
+    }
+  </div>
+}

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ScriptService } from './script.service';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 declare const window: any;
 
 @Injectable({
@@ -13,6 +14,12 @@ export class RfidService {
   private utils: any;
   private Hf14a: any;
   private WebserialAdapter: any;
+  private abort: boolean = false;
+
+  public isActive: Subject<boolean> = new BehaviorSubject<boolean>(false);
+  private busy: boolean = false;
+
+  public uid: Subject<number[]> = new Subject<number[]>();
 
   constructor(private scriptService: ScriptService) {
     this.scriptService.load('lodash', 'PN532_core', 'PN532_Hf14a', 'PN532_WebSerial').then(() => {
@@ -32,7 +39,7 @@ export class RfidService {
 
   initReader(): void {
     this.reader = new this.Pn532();
-    this.reader.use(new this.WebserialAdapter()) // A pn532 instance must register exactly one adapter plugin
+    this.reader.use(new this.WebserialAdapter()); // A pn532 instance must register exactly one adapter plugin
     this.reader.use(new this.Hf14a());
   }
 
@@ -44,13 +51,49 @@ export class RfidService {
     if(!this.reader) this.initReader();
     await this.testReaderConnection()
       .catch(error => {
-        console.error(error);
-        console.log(Object.entries(error));
+      });
+  }
+
+  abortReading(): void {
+    this.abort = true;
+  }
+
+  setActive(): void {
+    this.busy = true;
+    this.isActive.next(true);
+    console.log('reading');
+  }
+
+  setInActive(): void {
+    this.isActive.next(false);
+    this.busy = false;
+    console.log('stopped reading');
+  }
+
+  async readUid(): Promise<void> {
+    if(this.busy) return;
+    await this.ensureReaderAvailable();
+    this.abort = false;
+    while(!this.abort){
+      try {
+        this.setActive();
+        await this.singleScanInstance();
+        this.setInActive();
+        return ;
+      }catch(error) {
+        console.log(error);
+      }
+    }
+    this.setInActive();
+    return Promise.reject();
+  }
+
+  async singleScanInstance(): Promise<void> {
+    await this.reader.$hf14a.mfSelectCard({timeout: 2000})
+      .then((data: {uid: number[]}) => {
+        this.uid.next(data.uid);
+        console.log(data.uid.join(','));
       })
   }
 
-  async readUid(): Promise<number[]> {
-    await this.ensureReaderAvailable();
-    return (await this.reader.$hf14a.mfSelectCard()).uid;
-  }
 }

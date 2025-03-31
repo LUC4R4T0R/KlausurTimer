@@ -11,7 +11,8 @@ import { NgIf } from '@angular/common';
   styleUrl: './modal.component.scss'
 })
 export class ModalComponent implements OnInit{
-  @HostBinding('class.closed') hideModal: boolean = true;
+  @HostBinding('class.closed')
+  public hideModal: boolean = true;
   @Input() initiallyOpen: boolean = false;
   @Input() title: string = '';
   @Output() onClose: EventEmitter<void> = new EventEmitter<void>();

@@ -3,4 +3,8 @@
     <input type="checkbox" id="extended-logging-input" [(ngModel)]="tempSoftwareConfig.extended_logging">
     <label for="extended-logging-input" i18n>Aktiviere erweitertes Protokoll <div class="superscript">BETA</div></label>
   </div>
+  <div class="input-group checkbox-input" *ngIf="tempSoftwareConfig.extended_logging">
+    <input type="checkbox" id="rfid-input" [(ngModel)]="tempSoftwareConfig.enable_rfid">
+    <label for="rfid-input" i18n>Aktiviere RFID reader <div class="superscript">BETA</div></label>
+  </div>
 </div>

@@ -4,19 +4,14 @@ import { v4 as uuid } from 'uuid';
 import { ParticipationState } from '../models/participation-state';
 import { ExamConfig } from '../models/exam-config';
 import * as defaults from '../../defaults';
+import { exampleParticipants } from '../../defaults';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ParticipantManagementService {
   private participants: Participant[] = [
-    {
-      id: 'c1f7417b-f64e-44d7-a21a-6ddb3054d26c',
-      cardId: '4,133,77,42,114,101,128',
-      firstName: 'Luca',
-      lastName: 'Ringhausen',
-      state: ParticipationState.REGISTERED
-    }
+    ... exampleParticipants
   ];
 
   constructor() {

@@ -1,4 +1,4 @@
-app-rfid-reader{
+app-rfid-reader:not(:empty){
   display: block;
   margin-bottom: 1rem;
 }

@@ -24,6 +24,8 @@ import { RfidReaderComponent } from '../rfid-reader/rfid-reader.component';
 })
 export class SubmissionDialogueComponent {
   @ViewChild(ModalComponent) modal!: ModalComponent;
+  @ViewChild(RfidReaderComponent) rfidReader!: RfidReaderComponent;
+  @ViewChild(ParticipantSelectorComponent) participantSelector?: ParticipantSelectorComponent;
 
   reason: ParticipantEventType = ParticipantEventType.EXAM_SUBMISSION;
 
@@ -32,13 +34,16 @@ export class SubmissionDialogueComponent {
 
   public start(): void {
     this.modal.open();
+    this.rfidReader.startReading();
   }
 
   onClose(): void {
+    this.rfidReader?.stopReading();
     this.reset();
   }
 
   onSelected(participant: Participant): void {
+    if(this.modal.hideModal) return;
     this.participantEventService.log(
       new ParticipantEvent(participant.id as string,
         this.reason,
@@ -53,6 +58,7 @@ export class SubmissionDialogueComponent {
 
   reset(): void{
     this.reason = ParticipantEventType.EXAM_SUBMISSION;
+    this.participantSelector?.reset();
   }
 
   protected readonly ParticipantEventType = ParticipantEventType;

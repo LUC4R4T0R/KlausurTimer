@@ -4,12 +4,14 @@ import { cloneObject } from '../../lib/util';
 import { SoftwareConfig } from '../../models/software-config';
 import { ExamState } from '../../models/exam-state';
 import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-software-settings',
   standalone: true,
   imports: [
     FormsModule,
+    NgIf,
   ],
   templateUrl: './software-settings.component.html',
   styleUrl: './software-settings.component.scss'
@@ -29,6 +31,7 @@ export class SoftwareSettingsComponent {
   }
 
   public saveChanges(): void{
+    this.tempSoftwareConfig.enable_rfid = this.tempSoftwareConfig.enable_rfid && this.tempSoftwareConfig.extended_logging;
     this.settingsService.setSoftwareConfig(this.tempSoftwareConfig);
   }
 

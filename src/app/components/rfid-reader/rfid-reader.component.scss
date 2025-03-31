@@ -1,7 +1,7 @@
 $color-passive: lightgray;
 $color-active: DeepSkyBlue;
 
-:host #wrapper{
+#wrapper{
   padding: 1rem;
   border: 1px solid $color-passive;
   color: $color-passive;
@@ -11,10 +11,9 @@ $color-active: DeepSkyBlue;
   cursor: pointer;
 }
 
-:host.reading #wrapper{
+#wrapper.active{
   border-color: $color-active;
   color: $color-active;
-  cursor: unset;
 }
 
 i.bi{

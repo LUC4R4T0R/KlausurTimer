@@ -21,6 +21,7 @@ import { NgIf } from '@angular/common';
 export class ToiletDialogueComponent {
   @ViewChild(ModalComponent) modal!: ModalComponent;
   @ViewChild(RfidReaderComponent) rfidReader?: RfidReaderComponent;
+  @ViewChild(ParticipantSelectorComponent) participantSelector?: ParticipantSelectorComponent;
 
   errorMessage?: string;
 
@@ -33,10 +34,12 @@ export class ToiletDialogueComponent {
   }
 
   onClose(): void {
+    this.rfidReader?.stopReading();
     this.reset();
   }
 
   onSelected(participant: Participant): void {
+    if(this.modal.hideModal) return;
     try {
       this.toiletService.sendToToilet(participant);
       this.modal.close();
@@ -52,5 +55,6 @@ export class ToiletDialogueComponent {
 
   reset(): void{
     this.errorMessage = undefined;
+    this.participantSelector?.reset();
   }
 }

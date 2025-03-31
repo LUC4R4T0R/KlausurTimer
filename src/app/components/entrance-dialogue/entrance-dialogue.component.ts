@@ -37,6 +37,7 @@ export class EntranceDialogueComponent {
   }
 
   onClose(): void {
+    this.rfidReader.stopReading();
     this.reset();
   }
 
@@ -59,6 +60,7 @@ export class EntranceDialogueComponent {
   }
 
   handleParticipantCardScanned(participant: Participant): void{
+    if(this.modal.hideModal) return;
     participant.state = ParticipationState.PRESENT;
     this.participantManagementService.storeParticipants();
     this.onSaved(participant);
