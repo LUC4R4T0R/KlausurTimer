@@ -8,6 +8,7 @@ import { ParticipantEventType } from '../../models/participant-event-type';
 import { TimerService } from '../../services/timer.service';
 import { ExamState } from '../../models/exam-state';
 import { FormsModule } from '@angular/forms';
+import { RfidReaderComponent } from '../rfid-reader/rfid-reader.component';
 
 @Component({
   selector: 'app-submission-dialogue',
@@ -16,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     ModalComponent,
     ParticipantSelectorComponent,
     FormsModule,
+    RfidReaderComponent,
   ],
   templateUrl: './submission-dialogue.component.html',
   styleUrl: './submission-dialogue.component.scss'
@@ -43,6 +45,10 @@ export class SubmissionDialogueComponent {
         this.timerService.getState() === ExamState.FINISHED ? undefined : new Date()
       ));
     this.modal.close();
+  }
+
+  handleParticipantScanned(participant: Participant): void {
+    this.onSelected(participant);
   }
 
   reset(): void{

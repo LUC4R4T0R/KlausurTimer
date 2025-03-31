@@ -1,4 +1,5 @@
 <app-modal [title]="'Abgabe'" i18n-title (onClose)="onClose()" [initiallyOpen]="false">
+  <app-rfid-reader (participant)="handleParticipantScanned($event)"></app-rfid-reader>
   <div class="form">
     <div class="input-group">
       <label i18n>Abgabegrund</label>
