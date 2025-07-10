@@ -1,7 +1,8 @@
 <div class="main-grid">
   <header>
     <div class="logo-wrapper">
-      <img src="logo.svg" alt="Logo H-BRS">
+      <img *ngIf="windowType !== WindowType.REMOTE_CONTROL" src="logo.svg" alt="Logo H-BRS">
+      <img *ngIf="windowType === WindowType.REMOTE_CONTROL" class="logo-small" src="icon.svg" alt="Logo H-BRS">
     </div>
     <app-clock></app-clock>
   </header>
@@ -11,13 +12,17 @@
   <footer>
     <div class="controls">
       <ng-container *ngIf="windowType === WindowType.ALL_IN_ONE">
-        <button (click)="openControlPage()" i18n><i class="bi bi-dpad"></i> Fernsteuerung</button>
-        <button (click)="openSettings()"  i18n>
-          <i class="bi bi-gear"></i> Einstellungen
+        <button (click)="openControlPage()" ><i class="bi bi-dpad"></i>&nbsp;<span i18n>Fernsteuerung</span></button>
+        <button (click)="openSettings()" >
+          <i class="bi bi-gear"></i>&nbsp;<span i18n>Einstellungen</span>
         </button>
         <app-timer-controls ></app-timer-controls>
       </ng-container>
-      <button (click)="closeControlPage()" *ngIf="windowType === WindowType.REMOTE_CONTROL" i18n><i class="bi bi-display"></i> Gesamtansicht</button>
+      <button (click)="closeControlPage()" *ngIf="windowType === WindowType.REMOTE_CONTROL" ><i class="bi bi-display"></i>&nbsp;<span i18n>Gesamtansicht</span></button>
+      <ng-container  *ngIf="windowType !== WindowType.REMOTE_CONTROL">
+        <button (click)="initiateFullScreen()" *ngIf="!isFullscreenEnabled()"><i class="bi bi-fullscreen"></i>&nbsp;<span i18n>Vollbild</span></button>
+        <button (click)="exitFullScreen()" *ngIf="isFullscreenEnabled()"><i class="bi bi-fullscreen-exit"></i>&nbsp;<span i18n>Vollbild</span></button>
+      </ng-container>
     </div>
     <div class="right">
         <app-language-selector></app-language-selector>

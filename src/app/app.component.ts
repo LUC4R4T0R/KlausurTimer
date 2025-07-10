@@ -46,6 +46,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
 
   openControlPage():void {
+    this.exitFullScreen();
     window.open(this.router.serializeUrl(this.router.createUrlTree( [window.location.pathname],{queryParams: {billboard: true}})), '_blank', 'popup=true');
     this.router.navigate(['control']);
   }
@@ -53,6 +54,18 @@ export class AppComponent implements OnInit, AfterViewInit{
   closeControlPage(): void{
     this.router.navigate(['']);
     this.viewService.setWindowType(WindowType.ALL_IN_ONE);
+  }
+
+  initiateFullScreen(): void {
+    void document.body.requestFullscreen();
+  }
+
+  exitFullScreen(): void {
+    void document.exitFullscreen();
+  }
+
+  isFullscreenEnabled(): boolean {
+    return !!document.fullscreenElement;
   }
 
   protected readonly WindowType = WindowType;

@@ -1,9 +1,10 @@
 {
   "locale": "en",
   "translations": {
-    "8528627304918199332": "{$START_ITALIC_TEXT}{$CLOSE_ITALIC_TEXT} Remote control",
-    "6123713545391702330": "{$START_ITALIC_TEXT}{$CLOSE_ITALIC_TEXT} Settings ",
-    "8950287095356446531": "{$START_ITALIC_TEXT}{$CLOSE_ITALIC_TEXT} Overall view",
+    "2476455678262058740": "Remote-control",
+    "4435703504669117699": "Settings",
+    "8621538359518373706": "Overall-view",
+    "8306323491529631178": "Fullscreen",
     "1465206306724374210": "minutes",
     "4894648697918868112": "abort",
     "7451483196378959141": "add",
@@ -32,7 +33,6 @@
     "4366643159977996289": "Are you sure you want to delete this note?",
     "7831890921035527245": "Delete note",
     "3396314321097880980": "Display settings",
-    "4435703504669117699": "Settings",
     "7558761586905687468": "The exam has not yet started",
     "4247278580436928759": "The exam was paused",
     "2341561610325007724": "The exam has ended.{$LINE_BREAK}Lay down your pens!",

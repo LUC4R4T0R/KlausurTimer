@@ -15,6 +15,10 @@ body{
   background-color: whitesmoke;
 }
 
+body::backdrop{ /* background-color for fullscreen-mode */
+  background-color: whitesmoke;
+}
+
 .no-select {
   -webkit-user-select: none;
   -ms-user-select: none;
