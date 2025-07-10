@@ -26,6 +26,8 @@ export class NoteModalComponent {
   id?: string;
   note: Note = {title: '', content: '', author: ''};
 
+  modalTitle: string = $localize`Hinweis`;
+
   constructor(private notesService: NotesService) {
   }
 

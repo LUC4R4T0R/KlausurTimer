@@ -29,7 +29,7 @@
   <div class="tile" style="grid-row: 2 / 5">
     <h4 i18n>Hinweise</h4>
     <app-note-display class="scroll" [editable]="true" [collapsed]="true" (editNote)="noteModal.open($event.id, $event.note)"></app-note-display>
-    <div class="add-note"><button (click)="noteModal.open()"><i class="bi bi-plus"></i> hinzufügen</button></div>
+    <div class="add-note"><button (click)="noteModal.open()"><i class="bi bi-plus"></i> <span i18n>hinzufügen</span></button></div>
   </div>
 </div>
 <app-bonus-modal #bonusModal></app-bonus-modal>
