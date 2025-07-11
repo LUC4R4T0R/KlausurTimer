@@ -15,12 +15,15 @@
     <app-timer></app-timer>
     <div id="timer-controls">
       <app-timer-controls></app-timer-controls>
-      <button (click)="bonusModal.open()"><i class="bi bi-plus"></i> Bonus</button>
+      <button (click)="bonusModal.open()"><i class="bi bi-plus-lg"></i> Bonus</button>
     </div>
   </div>
-  <div class="tile" style="grid-row: 1 / 2">
-    <h4 i18n>Toilettenkoordination</h4>
+  <div class="tile" id="toilet-coordination" style="grid-row: 1 / 2">
+    <div>
+      <h4 i18n>Toilettenkoordination</h4>
+    </div>
     <app-toilet-controls class="scroll"></app-toilet-controls>
+    <app-toilet-queue-controls></app-toilet-queue-controls>
   </div>
   <div class="tile" style="grid-row: 3 / 5">
     <h4 i18n>Ereignis-Log</h4>

@@ -1,0 +1,5 @@
+<div class="joined-inputs">
+  <button (click)="decrement()" [disabled]="!canDecrement()"><i class="bi bi-dash-lg"></i></button>
+  <input type="number" [ngModel]="value" (ngModelChange)="setValue($event)" [min]="min" [max]="max" [step]="step">
+  <button (click)="increment()" [disabled]="!canIncrement()"><i class="bi bi-plus-lg"></i></button>
+</div>

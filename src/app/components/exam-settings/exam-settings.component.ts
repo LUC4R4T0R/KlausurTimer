@@ -54,7 +54,6 @@ export class ExamSettingsComponent implements OnInit{
   hmToMilliseconds(time: string): number{
     if(!/^\d{2}:\d{2}:\d{2}$/.test(time)) throw new Error('Input format of duration is invalid!');
     const [hours, minutes, seconds] = time.split(':');
-    console.log(hours, minutes, seconds);
     return (parseInt(hours) * 60 + parseInt(minutes)) * 60000 + (parseInt(seconds) * 1000);
   }
 

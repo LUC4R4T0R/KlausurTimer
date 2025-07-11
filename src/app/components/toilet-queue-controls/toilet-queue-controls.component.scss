@@ -1,7 +1,11 @@
-.number-input-group{
+.wrapper{
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+}
+
+app-number-input{
+  width: 7.5rem;
 }

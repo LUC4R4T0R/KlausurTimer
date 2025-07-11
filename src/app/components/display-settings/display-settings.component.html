@@ -15,8 +15,8 @@
     <input type="checkbox" id="display-event-log-input" [(ngModel)]="tempDisplayConfig.displayEventLog">
     <label for="display-event-log-input" i18n>Zeige Ereignis-Log</label>
   </div>
-  <div class="input-group">
+  <div class="input-group number-input-group">
     <label for="toilet-count-input" i18n>Anzahl verfügbarer WCs</label>
-    <input type="number" id="toilet-count-input" min="0" step="1" max="10" [(ngModel)]="tempDisplayConfig.toiletCount">
+    <app-number-input id="toilet-count-input" [min]="0" [max]="10" [(value)]="tempDisplayConfig.toiletCount"></app-number-input>
   </div>
 </div>

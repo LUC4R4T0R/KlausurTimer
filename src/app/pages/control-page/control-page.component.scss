@@ -64,3 +64,8 @@ app-timer{
 ::ng-deep app-note{
   background-color: lightgray;
 }
+
+#toilet-coordination{
+  display: grid !important;
+  grid-template: min-content auto min-content / 100%;
+}

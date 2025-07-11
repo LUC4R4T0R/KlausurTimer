@@ -15,10 +15,14 @@
   min-height: 8rem;
 }
 
-.input-group > input:not([type=checkbox]):not([type=radio]), .input-group > textarea{
+.input-group > input:not([type=checkbox]):not([type=radio]), .input-group > textarea, .joined-inputs > input:not([type=checkbox]):not([type=radio]){
   margin-top: 0.25rem;
   width: 100%;
-  font-size: large;
+  font-size: 1.2rem;
+  padding: 0.25rem;
+  border: 1px solid gray;
+  outline: none;
+  border-radius: 0.25rem;
 }
 
 button{
@@ -29,11 +33,16 @@ button{
   cursor: pointer;
 }
 
-button:hover{
+button[disabled]{
+  color: gray;
+  cursor: default;
+}
+
+button:hover:not([disabled]){
   background-color: gray;
 }
 
-button:active{
+button:active:not([disabled]){
   color: whitesmoke;
 }
 
@@ -71,4 +80,42 @@ button:active{
 
 .radio-button-group input[type=radio]{
   display: none;
+}
+
+.joined-inputs{
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  position: relative;
+  overflow: hidden;
+}
+
+.joined-inputs>*:not(:first-child,:last-child){
+  border-radius: 0 !important;
+}
+
+.joined-inputs>*:first-child{
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.joined-inputs>*:last-child{
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.joined-inputs>input:not([type='button']){
+  height: 100%;
+  margin: 0 !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+  -moz-appearance:textfield; /* Firefox */
 }

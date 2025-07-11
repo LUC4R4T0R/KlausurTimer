@@ -1,0 +1,24 @@
+.queue-container{
+  height: 3rem;
+  width: 3rem;
+  border-radius: 0.25rem;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+  background-color: whitesmoke;
+  overflow: clip;
+}
+.queue-container i.bi{
+  margin-top: 0.15rem;
+  padding: 0.25rem;
+  font-size: 1.75rem;
+}
+
+.queue-container span{
+  font-size: 0.8rem;
+  padding: 0.25rem;
+  margin-top: -1.25rem;
+  background-color: whitesmoke;
+}

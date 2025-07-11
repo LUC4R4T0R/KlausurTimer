@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { ToiletService } from '../../services/toilet.service';
 import { SettingsService } from '../../services/settings.service';
 import { cloneObject } from '../../lib/util';
+import { NumberInputComponent } from '../number-input/number-input.component';
 
 @Component({
   selector: 'app-display-settings',
   standalone: true,
   imports: [
     FormsModule,
+    NumberInputComponent,
   ],
   templateUrl: './display-settings.component.html',
   styleUrl: './display-settings.component.scss'

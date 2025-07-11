@@ -14,6 +14,8 @@ export class ToiletService {
     {state: ToiletState.VACANT}
   ];
   toilets: Subject<Toilet[]> = new BehaviorSubject<Toilet[]>(this.t);
+  queueSize: number = 0;
+  toiletQueueSize: Subject<number> = new BehaviorSubject<number>(this.queueSize);
 
   constructor(private settingsService: SettingsService) {
     this.settingsService.getDisplayConfig().subscribe((displayConfig: DisplayConfig) => {
@@ -24,6 +26,7 @@ export class ToiletService {
 
     addEventListener('storage', (event: StorageEvent) => this.handleStorageEvent(event));
     this.loadToilets();
+    this.loadToiletQueue();
   }
 
   public setToiletCount(value: number): void{
@@ -61,7 +64,29 @@ export class ToiletService {
     this.storeToilets();
   }
 
+  private loadToiletQueue(): void{
+    const val: string | null = localStorage.getItem('toiletQueue');
+    if(val === null) this.queueSize = 0;
+    else this.queueSize = parseInt(localStorage.getItem('toiletQueue') as string);
+    this.toiletQueueSize.next(this.queueSize);
+  }
+
+  public getToiletQueue(): Subject<number>{
+    return this.toiletQueueSize;
+  }
+
+  public setToiletQueue(value: number): void{
+    this.queueSize = value;
+    this.pushToiletQueueChanges();
+  }
+
+  private pushToiletQueueChanges(): void{
+    this.toiletQueueSize.next(this.queueSize);
+    localStorage.setItem('toiletQueue', this.queueSize.toString());
+  }
+
   private handleStorageEvent(event: StorageEvent): void{
-    if(event.key === 'toilets') this.loadToilets();
+    if(event.key === 'toilets') this.loadToilets()
+    else if(event.key === 'toiletQueue') this.loadToiletQueue();
   }
 }

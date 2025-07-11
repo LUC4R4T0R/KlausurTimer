@@ -12,6 +12,7 @@ import { SettingsModalComponent } from '../../components/settings-modal/settings
 import { BonusModalComponent } from '../../components/bonus-modal/bonus-modal.component';
 import { NotesDisplayComponent } from '../../components/notes-display/notes-display.component';
 import { NoteModalComponent } from '../../components/note-modal/note-modal.component';
+import { ToiletQueueControlsComponent } from '../../components/toilet-queue-controls/toilet-queue-controls.component';
 
 @Component({
   selector: 'app-control-page',
@@ -27,7 +28,8 @@ import { NoteModalComponent } from '../../components/note-modal/note-modal.compo
     SettingsModalComponent,
     BonusModalComponent,
     NotesDisplayComponent,
-    NoteModalComponent
+    NoteModalComponent,
+    ToiletQueueControlsComponent,
   ],
   templateUrl: './control-page.component.html',
   styleUrl: './control-page.component.scss'

@@ -1,1 +1,2 @@
+<app-toilet-queue-display *ngIf="queueSize > 0"></app-toilet-queue-display>
 <app-toilet-state *ngFor="let toilet of toilets; index as i" [index]="i" [toilet]="toilet"></app-toilet-state>
